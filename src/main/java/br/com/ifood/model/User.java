@@ -11,21 +11,19 @@ public class User {
   @Id
   private String id;
   private String name;
-
   @Email
   private String email;
-
   private String phoneNumber;
-  private String cpd;
+  private String cpf;
 
   public User() {  }
 
-  public User(String id, String name, String email, String phoneNumber, String cpd) {
+  public User(String id, String name, String email, String phoneNumber, String cpf) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.phoneNumber = phoneNumber;
-    this.cpd = cpd;
+    this.cpf = cpf;
   }
 
 
@@ -61,12 +59,12 @@ public class User {
     this.phoneNumber = phoneNumber;
   }
 
-  public String getCpd() {
-    return cpd;
+  public String getcpf() {
+    return cpf;
   }
 
-  public void setCpd(String cpd) {
-    this.cpd = cpd;
+  public void setcpf(String cpf) {
+    this.cpf = cpf;
   }
 
   @Override
