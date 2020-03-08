@@ -1,5 +1,6 @@
 package br.com.ifood.controller;
 
+import br.com.ifood.service.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,6 +25,9 @@ public class UserController {
   @Autowired
   private UserService service;
 
+  @Autowired
+  private UploadService photoService;
+
   @ApiOperation(value = "Find All User in the IFood")
   @GetMapping
   public Iterable<UserDTO> findAllUser() {
@@ -32,10 +36,16 @@ public class UserController {
 
   @ApiOperation(value = "Create User to list User in IFood")
   @PostMapping
-  public ResponseEntity<UserDTO> create(@RequestBody UserDTO user) {      
+  public ResponseEntity<UserDTO> create(@RequestBody UserDTO user) {
     return service.createUser(user);
   }
 
+  @PostMapping(
+      consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+  )
+  public void photo(@RequestParam("photo") MultipartFile photo) {
+    photoService.savePhoto(photo);
+  }
 
   @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
   public ResponseEntity<Object> uploader(@RequestParam("file") MultipartFile file) throws IOException {
