@@ -1,11 +1,11 @@
 package br.com.ifood.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import br.com.ifood.model.User;
+import br.com.ifood.dto.UserDTO;
+import br.com.ifood.exceptions.UserException;
 import br.com.ifood.repository.UserRepository;
 
 @Service
@@ -14,13 +14,17 @@ public class UserService {
   @Autowired
   private UserRepository userRepository;
 
-  public ResponseEntity<Iterable<User>> listUser() {
-    return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
+  public Iterable<UserDTO> listUser() {
+    return new UserDTO().converteUserList(userRepository.findAll());
   }
 
-  public ResponseEntity<User> createUser(User user) {
-    userRepository.save(user);
-    return ResponseEntity.ok().build();
+  public ResponseEntity<UserDTO> createUser(UserDTO user) {
+    try {
+      userRepository.save(new UserDTO().converterPersonDTOPerson(user));
+      return ResponseEntity.ok().build();
+    } catch (UserException e) {
+      throw new UserException("Erro ao salvar Usuário");
+    }
   }
   
 }

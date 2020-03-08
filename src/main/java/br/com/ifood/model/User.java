@@ -1,17 +1,18 @@
 package br.com.ifood.model;
 
-import javax.validation.constraints.Email;
+import java.io.Serializable;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class User {
+public class User implements Serializable {
+
+  private static final long serialVersionUID = 1L;
 
   @Id
   private String id;
   private String name;
-  @Email
   private String email;
   private String phoneNumber;
   private String cpf;
