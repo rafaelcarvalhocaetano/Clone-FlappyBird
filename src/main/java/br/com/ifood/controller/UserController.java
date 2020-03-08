@@ -1,18 +1,20 @@
 package br.com.ifood.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.ifood.dto.UserDTO;
 import br.com.ifood.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.multipart.MultipartFile;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 @Api(value = "User Endpoint", description = "User List API´S", tags = {"USER - END POINT"})
 @RestController
@@ -32,6 +34,18 @@ public class UserController {
   @PostMapping
   public ResponseEntity<UserDTO> create(@RequestBody UserDTO user) {      
     return service.createUser(user);
+  }
+
+
+  @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+  public ResponseEntity<Object> uploader(@RequestParam("file") MultipartFile file) throws IOException {
+
+    File convertFile = new File(file.getOriginalFilename());
+    convertFile.createNewFile();
+    FileOutputStream fileOutputStream = new FileOutputStream(convertFile);
+    fileOutputStream.write(file.getBytes());
+    fileOutputStream.close();
+    return new ResponseEntity<>("File is Uploaded successfully" + file, HttpStatus.OK);
   }
   
   
