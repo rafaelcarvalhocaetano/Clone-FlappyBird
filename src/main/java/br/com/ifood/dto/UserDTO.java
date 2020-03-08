@@ -20,7 +20,7 @@ public class UserDTO {
     this.name = user.getName();
     this.email = user.getEmail();
     this.phoneNumber = user.getPhoneNumber();
-    this.cpf = user.getcpf();
+    this.cpf = user.getCpf();
   }
 
   public String getId() {
@@ -37,10 +37,6 @@ public class UserDTO {
 
   public String getPhoneNumber() {
     return phoneNumber;
-  }
-
-  public String getCpd() {
-    return cpf;
   }
 
   public void setId(String id) {
@@ -77,17 +73,17 @@ public class UserDTO {
     dto.setName(user.getName());
     dto.setEmail(user.getEmail());
     dto.setPhoneNumber(user.getPhoneNumber());
-    dto.setCpf(user.getcpf());
+    dto.setCpf(user.getCpf());
     return dto;
   }
 
   public User converterPersonDTOPerson(UserDTO dto) {
     User user = new User();
-    dto.setId(dto.getId());
-    dto.setName(dto.getName());
-    dto.setEmail(dto.getEmail());
-    dto.setPhoneNumber(dto.getPhoneNumber());
-    dto.setCpf(dto.getCpf());
+    user.setId(dto.getId());
+    user.setName(dto.getName());
+    user.setEmail(dto.getEmail());
+    user.setPhoneNumber(dto.getPhoneNumber());
+    user.setCpf(dto.getCpf());
     return user;
   }
 

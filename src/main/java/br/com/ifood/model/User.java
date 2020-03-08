@@ -60,11 +60,11 @@ public class User implements Serializable {
     this.phoneNumber = phoneNumber;
   }
 
-  public String getcpf() {
+  public String getCpf() {
     return cpf;
   }
 
-  public void setcpf(String cpf) {
+  public void setCpf(String cpf) {
     this.cpf = cpf;
   }
 
