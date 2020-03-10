@@ -1,14 +1,10 @@
-package br.com.ifood.model;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
+package br.com.ifood.dto;
 import br.com.ifood.enums.AddressType;
 
-@Document
-public class Address {
+import br.com.ifood.model.Address;
 
-  @Id
+public class AddressDTO {
+
   private String id;
   private String street;
   private AddressType type;
@@ -17,17 +13,17 @@ public class Address {
   private String state;
   private String complement;
 
-  public Address() {  }
+  public AddressDTO() {
+  }
 
-  public Address(String id, String street, AddressType type, String neighborhood, String city, String state,
-      String complement) {
-    this.id = id;
-    this.street = street;
-    this.type = type;
-    this.neighborhood = neighborhood;
-    this.city = city;
-    this.state = state;
-    this.complement = complement;
+  public AddressDTO(Address address) {
+    this.id = address.getId();
+    this.street = address.getStreet();
+    this.type = address.getType();
+    this.neighborhood = address.getNeighborhood();
+    this.city = address.getCity();
+    this.state = address.getState();
+    this.complement = address.getComplement();
   }
 
   public String getId() {
@@ -86,30 +82,19 @@ public class Address {
     this.complement = complement;
   }
 
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((id == null) ? 0 : id.hashCode());
-    return result;
-  }
+public Address convertDtoToEnity(AddressDTO address) {
+  Address add = new Address();
+  add.setId(address.getId());
+  add.setStreet(address.getStreet());
+  add.setType(address.getType());
+  add.setNeighborhood(address.getNeighborhood());
+  add.setCity(address.getCity());
+  add.setState(address.getState());
+  add.setComplement(address.getComplement());
+  return add;
+}
 
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Address other = (Address) obj;
-    if (id == null) {
-      if (other.id != null)
-        return false;
-    } else if (!id.equals(other.id))
-      return false;
-    return true;
-  }
+ 
 
   
   
