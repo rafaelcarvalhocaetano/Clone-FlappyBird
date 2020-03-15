@@ -16,15 +16,17 @@ public class User implements Serializable {
   private String email;
   private String phoneNumber;
   private String cpf;
+  private Address address;
 
   public User() {  }
 
-  public User(String id, String name, String email, String phoneNumber, String cpf) {
+  public User(String id, String name, String email, String phoneNumber, String cpf, Address address) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.phoneNumber = phoneNumber;
     this.cpf = cpf;
+    this.address = address;
   }
 
 
@@ -66,6 +68,13 @@ public class User implements Serializable {
 
   public void setCpf(String cpf) {
     this.cpf = cpf;
+  }
+
+  public Address getAddress() {
+    return address;
+  }
+  public void setAddress(Address address) {
+    this.address = address;
   }
 
   @Override

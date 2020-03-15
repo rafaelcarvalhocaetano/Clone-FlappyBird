@@ -14,9 +14,8 @@ public class AddressService {
   @Autowired
   private AddressRespository respository;
 
-  public ResponseEntity<Iterable<AddressDTO>> listAddress() {
-    this.respository.findAll();
-    return ResponseEntity.ok().build();
+  public Iterable<AddressDTO> listAddress() {
+    return new AddressDTO().convertAddress(respository.findAll());
   }
 
   public ResponseEntity<AddressDTO> createAddress(AddressDTO dto) {

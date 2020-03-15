@@ -15,8 +15,8 @@ public class AddressController {
   private AddressService service;
 
   @GetMapping
-  public ResponseEntity<Iterable<AddressDTO>> getAllAddress() {
-    return ResponseEntity.ok().build();
+  public Iterable<AddressDTO> getAllAddress() {
+    return service.listAddress();
   }
 
   @PostMapping

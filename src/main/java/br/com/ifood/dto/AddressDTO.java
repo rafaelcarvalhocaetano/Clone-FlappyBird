@@ -3,6 +3,9 @@ import br.com.ifood.enums.AddressType;
 
 import br.com.ifood.model.Address;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class AddressDTO {
 
   private String id;
@@ -82,17 +85,22 @@ public class AddressDTO {
     this.complement = complement;
   }
 
-public Address convertDtoToEnity(AddressDTO address) {
-  Address add = new Address();
-  add.setId(address.getId());
-  add.setStreet(address.getStreet());
-  add.setType(address.getType());
-  add.setNeighborhood(address.getNeighborhood());
-  add.setCity(address.getCity());
-  add.setState(address.getState());
-  add.setComplement(address.getComplement());
-  return add;
-}
+
+  public List<AddressDTO> convertAddress(List<Address> all) {
+    return all.stream().map(AddressDTO::new).collect(Collectors.toList());
+  }
+
+  public Address convertDtoToEnity(AddressDTO address) {
+    Address add = new Address();
+    add.setId(address.getId());
+    add.setStreet(address.getStreet());
+    add.setType(address.getType());
+    add.setNeighborhood(address.getNeighborhood());
+    add.setCity(address.getCity());
+    add.setState(address.getState());
+    add.setComplement(address.getComplement());
+    return add;
+  }
 
  
 
