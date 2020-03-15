@@ -1,6 +1,8 @@
 package br.com.ifood.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -16,17 +18,17 @@ public class User implements Serializable {
   private String email;
   private String phoneNumber;
   private String cpf;
-  private Address address;
+  private List<Address> address = new ArrayList<>();
+
 
   public User() {  }
 
-  public User(String id, String name, String email, String phoneNumber, String cpf, Address address) {
+  public User(String id, String name, String email, String phoneNumber, String cpf) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.phoneNumber = phoneNumber;
     this.cpf = cpf;
-    this.address = address;
   }
 
 
@@ -70,10 +72,10 @@ public class User implements Serializable {
     this.cpf = cpf;
   }
 
-  public Address getAddress() {
+  public List<Address> getAddress() {
     return address;
   }
-  public void setAddress(Address address) {
+  public void setAddress(List<Address> address) {
     this.address = address;
   }
 

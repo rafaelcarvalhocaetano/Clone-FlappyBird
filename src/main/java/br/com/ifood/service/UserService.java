@@ -4,9 +4,9 @@ package br.com.ifood.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import br.com.ifood.dto.AddressIdDTO;
 import br.com.ifood.dto.UserDTO;
 import br.com.ifood.exceptions.UserException;
 import br.com.ifood.model.User;
@@ -35,7 +35,6 @@ public class UserService {
     }
   }
 
-
   public User updateUser(User userParams) {
     try {
       User user = getId(userParams.getId());
@@ -45,14 +44,13 @@ public class UserService {
     }
   }
 
-
   public void delete(String id) {
     getId(id);
     userRepository.deleteById(id);
   }
 
   public User convertToDto(UserDTO dto) {
-    return new User(dto.getId(), dto.getName(), dto.getEmail(), dto.getPhoneNumber(), dto.getCpf(), dto.getAddress());
+    return new User(dto.getId(), dto.getName(), dto.getEmail(), dto.getPhoneNumber(), dto.getCpf());
   }
   
 }

@@ -19,6 +19,15 @@ public class AddressDTO {
   public AddressDTO() {
   }
 
+
+  public AddressDTO(String id) {
+    this.id = id;
+  }
+
+   public AddressDTO(UserDTO dto) {
+    this.id = dto.getId();
+  }
+
   public AddressDTO(Address address) {
     this.id = address.getId();
     this.street = address.getStreet();
@@ -101,6 +110,8 @@ public class AddressDTO {
     add.setComplement(address.getComplement());
     return add;
   }
+
+
 
  
 
